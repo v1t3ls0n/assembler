@@ -1,11 +1,6 @@
-
-# Maman 14: Final Project (system programming lab Openu CS course)
 ### Date: 28.03.2022
-#### University explicit specification for the project:
-https://github.com/v1t3ls0n/assembler-openu-project/files/8794964/university_project_specs_doc.pdf
-
-
-##### Task Summary: Create an assembler for an assembly programming language defined in The Open University (of Israel) System Programming Lab course final project.
+##### Task Summary: 
+Create an assembler as required in docs/spec.pdf
 ##### Implementation Overview and General Approach:
 
 #### Objectives (Goals): ### 
@@ -37,3 +32,4 @@ If the second run is finished without any error (else: Next) we will generate al
 
 ##### Next:
 The assembler then moves on to handle the next source file (which means that it will repeat over these 5 steps for each source file passed to it) until the last one then it ends the program.
+
