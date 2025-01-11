@@ -13,7 +13,8 @@ compiler
 *.ko
 *.obj
 *.elf
-
+combine_code_to_single_file.sh
+git_update.sh
 add-project-for-shahar.sh
 
 # Linker output
