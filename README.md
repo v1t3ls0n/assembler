@@ -1,4 +1,3 @@
-Here is an updated version of the README file with enhanced formatting and icons for better readability:
 # Assembler Project
 
 This repository contains an assembler implementation for a hypothetical assembly language. The assembler processes assembly code files, expands macros, and generates machine code along with necessary auxiliary files.
