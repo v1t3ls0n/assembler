@@ -27,7 +27,7 @@ Create an assembler as required in docs/spec.pdf
 2. **Separation of Concern**: Split the program into independent components responsible for well-defined tasks, with shared states for data sharing between files.
 3. **Abstraction of Data Structures**: Use typedef structs, enums, and constants to fit our needs.
 
-### 🗂️ Our Implementation Overview in Short
+### 🗂️ My Implementation Overview in Short
 #### Stages
 
 1. **Macros Stage**: The assembler parses the original source (.as) file and generates the expanded (.am) source file, replacing macros with their content.
@@ -116,7 +116,7 @@ Create an assembler as required in docs/spec.pdf
 2. **Separation of Concern**: We tried to split the program into independent components that will be responsible for well-defined tasks and that the sharing of data between files will be through some kind of shared states interface that will be used by all files.
 3. **Abstraction of Data Structures and Variables**: Used to fit our needs by defining different typedef structs, types, enums, and constants.
 
-#### 🗂️ Our Implementation Overview in Short
+#### 🗂️ My Implementation Overview in Short
 #### Stages
 
 1. **Macros Stage**: The assembler parses the original source (.as) file and generates the expanded (.am) source file that contains the same source code content, the only difference is that the macros defined in the original source are being replaced in the expanded version with their content.
