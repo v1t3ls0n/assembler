@@ -23,7 +23,7 @@ Designed for **efficiency and reliability**, the assembler ensures **comprehensi
 
 ## 📋 **Table of Contents**
 - [🎯 Project Overview](#-project-overview)
-- [⚙️ Implementation Details](#-implementation-details)
+- [⚙️ Implementation Details](#%EF%B8%8F-implementation-details)
   - [💡 Design and Approach](#-design-and-approach)
   - [🔧 Processing Pipeline](#-processing-pipeline)
   - [🔄 File Processing Flow](#-file-processing-flow)
