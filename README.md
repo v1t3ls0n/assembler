@@ -1,18 +1,29 @@
-# ⚙️ Assembler – System Programming Lab Final Project
+# ⚙️ **Assembler – System Programming Lab Final Project**  
 
-**🌐 OpenU Course Link**: [20465 – System Programming Lab](https://www.openu.ac.il/courses/20465.htm)  
-**📑 Task Definition & Specification**: [docs/spec.pdf](docs/spec.pdf)  
-**👨‍🏫 Course Instructor**: Danny Calfon  
-**📅 Submission Date**: 28.03.2022  
-
-#### 📝 Task Summary
-Implement an assembler as outlined in docs/spec.pdf. This repository provides a complete assembler for a custom assembly language specified by the Open University's System Programming Lab CS course. 
-The assembler reads assembly source files (.as), expands macros, handles symbol definitions, generates machine code, and produces auxiliary files essential for proper execution. 
-It incorporates rigorous error handling at every stage—macro expansion, first pass, and second pass—to detect and log issues without terminating early, ensuring all errors are discovered.
+**🌐 Course:** [20465 – System Programming Lab](https://www.openu.ac.il/courses/20465.htm)  
+**👨‍🏫 Instructor:** Danny Calfon  
+**📅 Submission Date:** 28.03.2022  
+**📑 Project Specification:** [docs/spec.pdf](docs/spec.pdf)  
 
 <br>
+<br>
 
-## 📋 Table of Contents
+# 🎯 **Project Overview**  
+This project implements a fully functional **assembler** for a custom assembly language, as specified in the Open University's **System Programming Lab** course.  
+
+The assembler processes assembly source files (`.as`), performing:  
+- **Macro Expansion** – Replaces macros with their corresponding definitions.  
+- **Symbol Management** – Resolves and defines labels.  
+- **Machine Code Generation** – Converts assembly instructions into binary format.  
+- **Auxiliary File Creation** – Produces essential `.ob`, `.ent`, and `.ext` output files.  
+- **Robust Error Handling** – Detects and logs all errors at every stage (macro expansion, first pass, second pass) without premature termination.  
+
+Designed for **efficiency and reliability**, the assembler ensures **comprehensive error detection** while maintaining structured and modular code. 
+
+<br>
+<br>
+
+# 📋 Table of Contents
 
 - [🌟 Overview](#overview)
 - [🏗️ File Structure](#%EF%B8%8F-file-structure)
@@ -22,7 +33,7 @@ It incorporates rigorous error handling at every stage—macro expansion, first 
 <br>
 <br>
 
-## 🌟 Overview
+# 🌟 Overview
 The assembler is designed to handle assembly language files, process macros, and generate machine code. It supports multiple stages including macro expansion, first pass, and second pass to ensure the[...]
 #### 📋 Implementation Overview and General Approach
 #### 🎯 Objectives (Goals)
@@ -42,7 +53,7 @@ The assembler then handles the next source file, repeating these 5 steps for eac
 <br>
 <br>
 
-## 🏗️ **File Structure**
+# 🏗️ **File Structure**
 
 ### **📄 Main Source Files (`.c`)**
 - **`compiler.c`** – Contains the main function and handles source files.
@@ -120,7 +131,7 @@ The assembler then handles the next source file, repeating these 5 steps for eac
 <br>
 <br>
 
-## 🛠️ Usage
+# 🛠️ Usage
 
 To use the assembler, compile the source code and run the executable with the assembly files as arguments:
 
@@ -133,5 +144,5 @@ The assembler will generate the necessary output files in the same directory as 
 
 <br>
 
-## 📜 License
+# 📜 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
