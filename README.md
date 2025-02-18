@@ -5,134 +5,162 @@
 **📅 Submission Date:** 28.03.2022  
 **📑 Project Specification:** [docs/spec.pdf](docs/spec.pdf)  
 
-<br>
-<br>
+---
 
-# 🎯 **Project Overview**  
+## 🎯 **Project Overview**  
 This project implements a fully functional **assembler** for a custom assembly language, as specified in the Open University's **System Programming Lab** course.  
 
-The assembler processes assembly source files (`.as`), performing:  
+### **Features**
 - **Macro Expansion** – Replaces macros with their corresponding definitions.  
 - **Symbol Management** – Resolves and defines labels.  
 - **Machine Code Generation** – Converts assembly instructions into binary format.  
 - **Auxiliary File Creation** – Produces essential `.ob`, `.ent`, and `.ext` output files.  
 - **Robust Error Handling** – Detects and logs all errors at every stage (macro expansion, first pass, second pass) without premature termination.  
 
-Designed for **efficiency and reliability**, the assembler ensures **comprehensive error detection** while maintaining structured and modular code. 
+Designed for **efficiency and reliability**, the assembler ensures **comprehensive error detection** while maintaining structured and modular code.
 
-<br>
-<br>
+---
 
-# 📋 Table of Contents
+## 📋 **Table of Contents**
+- [🎯 Project Overview](#-project-overview)
+- [⚙️ Implementation Details](#-implementation-details)
+  - [📋 Design and Approach](#-design-and-approach)
+  - [🛠️ Processing Pipeline](#-processing-pipeline)
+  - [🔄 File Processing Flow](#-file-processing-flow)
+- [🏗️ File Structure](#-file-structure)
+  - [📄 Main Source Files (`.c`)](#-main-source-files-c)
+  - [📂 Header Files (`headers/`)](#-header-files-headers)
+  - [📜 Documentation (`docs/`)](#-documentation-docs)
+  - [📚 Library Files (`lib/`)](#-library-files-lib)
+  - [🔢 Variables (`variables/`)](#-variables-variables)
+  - [🛠️ Scripts](#-scripts)
+  - [📁 Project Metadata](#-project-metadata)
+  - [🧪 Test Files (`__test_files/`)](#-test-files-__test_files)
+- [🛠️ Usage](#-usage)
+- [📜 License](#-license))
 
-- [🌟 Overview](#overview)
-- [🏗️ File Structure](#%EF%B8%8F-file-structure)
-- [🛠️ Usage](#%EF%B8%8F-usage)
-- [📜 License](#-license)
 
-<br>
-<br>
+---
 
-# 🌟 Overview
-The assembler is designed to handle assembly language files, process macros, and generate machine code. It supports multiple stages including macro expansion, first pass, and second pass to ensure the[...]
-#### 📋 Implementation Overview and General Approach
-#### 🎯 Objectives (Goals)
-1. **Memory Efficiency**: It was important for us to allocate the memory of the binary image output dynamically so that the memory use of the program would be efficient and that the memory allocation [...]
-2. **Separation of Concern**: We tried to split the program into independent components that will be responsible for well-defined tasks and that the sharing of data between files will be through some [...]
-3. **Abstraction of Data Structures and Variables**: Used to fit our needs by defining different typedef structs, types, enums, and constants.
-#### 🗂️ My Implementation Overview in Short
-#### Stages
-1. **Macros Stage**: The assembler parses the original source (.as) file and generates the expanded (.am) source file that contains the same source code content, the only difference is that the macros[...]
-2. **First Run**: In the first run, the assembler counts the size of the data image and the instruction image (without allocating any memory), adds all the symbols to the symbol table, and verifies th[...]
-3. **In Between the First and Second Run**: If the first run ended successfully, the assembler updates the address of each data symbol in the symbol table, then allocates the exact amount of memory ne[...]
-4. **Second Run**: In the second run, the assembler writes the words of each line of code in binary format, inserts the words (binary bits) to the memory image in the correct position depending on the[...]
-5. **Export (Generate Files)**: If the second run finishes without any error, the required outputs (.ob, .ext, .ent files) are generated.
-#### 🔄 Next
-The assembler then handles the next source file, repeating these 5 steps for each source file passed to it until the last one, then it ends the program.
+## ⚙️ **Implementation Details**  
 
-<br>
-<br>
+The assembler follows a structured pipeline to process assembly source files, expand macros, handle symbols, and generate machine code. It ensures **efficient memory management**, **clear separation of concerns**, and **robust error detection** across multiple stages.  
 
-# 🏗️ **File Structure**
+### 📋 **Design and Approach**  
+
+#### 🎯 **Key Objectives**  
+1. **Memory Efficiency** – Dynamically allocates memory to optimize resource usage.  
+2. **Separation of Concerns** – Implements modular components with structured shared states for data management.  
+3. **Abstracted Data Structures** – Uses typedefs, enums, and constants for efficient handling of assembler data.  
+
+---
+
+## 🛠️ **Processing Pipeline**  
+
+Each source file undergoes the following stages:  
+
+### **1️⃣ Macro Expansion**  
+- Reads the `.as` source file and generates an expanded `.am` file.  
+- Replaces all macro definitions with their corresponding content.  
+
+### **2️⃣ First Pass**  
+- Scans the expanded source file to determine **image sizes** (without memory allocation).  
+- Adds all symbols to the **symbol table**.  
+- Performs **syntax and semantic validation**.  
+
+### **3️⃣ Address Adjustment** *(Before the Second Pass)*  
+- Updates **data symbol addresses** in the symbol table.  
+- Allocates **exact memory** needed for the final binary image.  
+
+### **4️⃣ Second Pass**  
+- Converts assembly instructions into **binary machine code**.  
+- Inserts binary words into memory at their correct locations.  
+- Resolves **symbol references** and logs errors for unresolved labels.  
+
+### **5️⃣ Output File Generation**  
+If no errors are detected, the assembler generates:  
+- **`.ob` (Object File)** – Assembled binary code.  
+- **`.ent` (Entries File)** – Lists "entry" symbols.  
+- **`.ext` (Externals File)** – Lists external references.  
+
+---
+
+## 🔄 **File Processing Flow**  
+After completing these five steps, the assembler processes the next file until all input files are assembled. The program then terminates.
+
+---
+
+## 🏗️ **File Structure**
 
 ### **📄 Main Source Files (`.c`)**
-- **`compiler.c`** – Contains the main function and handles source files.
-- **`errors.c`** – Handles error logging and reporting.
-- **`exportFiles.c`** – Manages the creation of output files like `.ob`, `.ent`, and `.ext`.
-- **`firstRun.c`** – Contains functions specifically used by parse.c for handling the first pass of the assembler.
-- **`secondRun.c`** – Contains functions specifically used by parse.c for handling the second pass of the assembler.
-- **`preProccesor.c`** – Handles macro expansion.
-- **`tables.c`** – Handles the symbol table, macro tables, and other typedef data structures used by the assembler.
-- **`helpers.c`** – Contains utility functions for string manipulation and format conversions.
-- **`memory.c`** – Manages memory allocation and image generation.
-- **`operations.c`** – Manages operation definitions and their properties.
-- **`parse.c`** – Implements both the first and second pass of the assembler, determining the parsing stage based on state.
-- **`sharedStates.c`** – Manages global states and shared information across the assembler.
-- **`utils.c`** – Provides additional utility functions for validation and general handling.
+- **`compiler.c`** – Handles main execution flow.  
+- **`errors.c`** – Manages error logging and reporting.  
+- **`exportFiles.c`** – Generates `.ob`, `.ent`, and `.ext` files.  
+- **`parse.c`** – Implements **both the first and second pass**, controlling parsing state.  
+- **`firstRun.c`** – Provides **helper functions** for the first pass, called by `parse.c`.  
+- **`secondRun.c`** – Provides **helper functions** for the second pass, called by `parse.c`.  
+- **`preProccesor.c`** – Handles macro expansion.  
+- **`tables.c`** – Manages **symbol tables, macro tables, and typedef data structures**.  
+- **`helpers.c`** – Provides string manipulation utilities.  
+- **`memory.c`** – Handles memory allocation.  
+- **`operations.c`** – Defines assembler operations.  
+- **`sharedStates.c`** – Manages global assembler states.  
+- **`utils.c`** – Provides validation and additional helper functions.  
 
 ---
 
 ### **📂 Header Files (`headers/`)**
-- **`headers/functions/`**
-  - `compiler.h` – Header for main compiler functions.
-  - `errors.h` – Defines error handling methods.
-  - `exportFiles.h` – Contains function prototypes for file generation.
-  - `firstRun.h` – Function definitions for the first assembler pass.
-  - `functions.h` – General helper function declarations.
-  - `helpers.h` – Utility functions for formatting and string operations.
-  - `memory.h` – Handles memory allocation and management.
-  - `operation.h` – Defines supported assembler operations.
-  - `parse.h` – Function definitions for parsing assembler code.
-  - `preProccesor.h` – Macro expansion function declarations.
-  - `secondRun.h` – Function definitions for the second assembler pass.
-  - `sharedStates.h` – Manages shared state variables.
-  - `tables.h` – Defines structures for symbol and macro tables.
-  - `utils.h` – Additional helper functions.
+Located in **`headers/functions/`**:
+- `compiler.h` – Main compiler functions.  
+- `errors.h` – Error handling.  
+- `exportFiles.h` – File generation functions.  
+- `firstRun.h` – Functions for the first assembler pass.  
+- `secondRun.h` – Functions for the second assembler pass.  
+- `parse.h` – Parsing function declarations.  
+- `tables.h` – Symbol table and macro structure definitions.  
+- `utils.h` – Additional helper functions.  
 
 ---
 
 ### **📜 Documentation (`docs/`)**
-- **`spec.pdf`** – The project specification file detailing requirements and design.
+- **`spec.pdf`** – Official project specification.  
 
 ---
 
 ### **📚 Library Files (`lib/`)**
-- **`lib.h`** – Shared library definitions.
+- **`lib.h`** – Shared library definitions.  
 
 ---
 
 ### **🔢 Variables (`variables/`)**
-- **`complex_typedef.h`** – Complex typedef structures.
-- **`constants.h`** – Defines global constants used throughout the assembler.
-- **`flags.h`** – Manages assembler flags and settings.
-- **`variables.h`** – Stores global variable definitions.
+- **`constants.h`** – Global constants.  
+- **`flags.h`** – Assembler flags and settings.  
+- **`variables.h`** – Stores global variables.  
 
 ---
 
 ### **🛠️ Scripts**
-- **`runTests.sh`** – Runs test cases for the assembler.
+- **`runTests.sh`** – Runs assembler test cases.  
 
 ---
 
 ### **📁 Project Metadata**
-- **`.gitignore`** – Specifies files to ignore in version control.
-- **`LICENSE.md`** – Contains the project license.
-- **`README.md`** – This documentation file.
-- **`makefile`** – Defines build commands for compiling the assembler.
+- **`.gitignore`** – Files to ignore in version control.  
+- **`LICENSE.md`** – MIT License details.  
+- **`README.md`** – Project documentation.  
+- **`makefile`** – Compilation instructions.  
 
 ---
 
 ### **🧪 Test Files (`__test_files/`)**
-- **`errors/`** – Contains test cases with intentional errors.
-- **`mixed/`** – Test cases with a combination of valid and invalid instructions.
-- **`valid/`** – Fully valid assembler test cases.
-- **`errors.log`** – Stores error logs from test runs.
+- **`errors/`** – Intentional error cases.  
+- **`mixed/`** – Mix of valid/invalid cases.  
+- **`valid/`** – Fully valid assembler tests.  
+- **`errors.log`** – Stores error logs.  
 
-<br>
-<br>
+---
 
-# 🛠️ Usage
-
+## 🛠️ **Usage**
 To use the assembler, compile the source code and run the executable with the assembly files as arguments:
 
 ```sh
@@ -142,7 +170,7 @@ gcc -o assembler compiler.c data.h errors.c exportFiles.c firstRun.c secondRun.c
 
 The assembler will generate the necessary output files in the same directory as the source files.
 
-<br>
+---
 
 # 📜 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
