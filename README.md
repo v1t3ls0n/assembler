@@ -1,6 +1,13 @@
-# Assembler Project
+# Assembler – System Programming Lab Final Project
+**Course Instructor**: Danny Calfon  
+**OpenU Course Link**: [20465 – System Programming Lab](https://www.openu.ac.il/courses/20465.htm)  
+**Task Definition & Specification**: [docs/spec.pdf](docs/spec.pdf)
+📅 **Submission Date**: 28.03.2022  
 
-This repository contains an assembler implementation for a hypothetical assembly language. The assembler processes assembly code files, expands macros, and generates machine code along with necessary auxiliary files.
+#### 📝 Task Summary
+Implement an assembler as outlined in docs/spec.pdf. This repository provides a complete assembler for a custom assembly language specified by the Open University's System Programming Lab CS course. 
+The assembler reads assembly source files (.as), expands macros, handles symbol definitions, generates machine code, and produces auxiliary files essential for proper execution. 
+It incorporates rigorous error handling at every stage—macro expansion, first pass, and second pass—to detect and log issues without terminating early, ensuring all errors are discovered.
 
 ## 📋 Table of Contents
 
@@ -16,12 +23,6 @@ This repository contains an assembler implementation for a hypothetical assembly
 ## 🌟 Overview
 
 The assembler is designed to handle assembly language files, process macros, and generate machine code. It supports multiple stages including macro expansion, first pass, and second pass to ensure the generation of accurate machine code and auxiliary files like `.ob`, `.ent`, and `.ext`.
-
-
-### 📅 Date: 28.03.2022
-
-#### 📝 Task Summary
-Create an assembler as required in docs/spec.pdf
 
 #### 📋 Implementation Overview and General Approach
 
@@ -97,10 +98,6 @@ gcc -o assembler compiler.c data.h errors.c exportFiles.c firstRun.c secondRun.c
 ```
 
 The assembler will generate the necessary output files in the same directory as the source files.
-
-## 🤝 Contributing
-
-Contributions are welcome! If you find any bugs or have suggestions for improvements, feel free to open an issue or submit a pull request.
 
 ## 📜 License
 
