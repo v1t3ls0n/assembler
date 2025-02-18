@@ -11,8 +11,7 @@ The assembler reads assembly source files (.as), expands macros, handles symbol 
 It incorporates rigorous error handling at every stage—macro expansion, first pass, and second pass—to detect and log issues without terminating early, ensuring all errors are discovered.
 
 ## 📋 Table of Contents
-
-[🌟 Overview](#overview)
+- [🌟 Overview](#overview)
 - [🏗️ File Structure](#file-structure)
 - [⚙️ Compilation Process](#compilation-process)
 - [🔧 Functions and Methods](#functions-and-methods)
