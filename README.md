@@ -9,9 +9,9 @@
 Implement an assembler as outlined in docs/spec.pdf. This repository provides a complete assembler for a custom assembly language specified by the Open University's System Programming Lab CS course. 
 The assembler reads assembly source files (.as), expands macros, handles symbol definitions, generates machine code, and produces auxiliary files essential for proper execution. 
 It incorporates rigorous error handling at every stage—macro expansion, first pass, and second pass—to detect and log issues without terminating early, ensuring all errors are discovered.
+&nbsp;
 
-
-
+&nbsp;
 ## 📋 Table of Contents
 
 - [🌟 Overview](#overview)
@@ -21,26 +21,21 @@ It incorporates rigorous error handling at every stage—macro expansion, first 
 - [❗ Error Handling](#-error-handling)
 - [🛠️ Usage](#%EF%B8%8F-usage)
 - [📜 License](#-license)
+&nbsp;
 
-
-
+&nbsp;
 ## 🌟 Overview
 
 The assembler is designed to handle assembly language files, process macros, and generate machine code. It supports multiple stages including macro expansion, first pass, and second pass to ensure the[...]
 
-
-
 #### 📋 Implementation Overview and General Approach
-
-
-
 #### 🎯 Objectives (Goals)
 1. **Memory Efficiency**: It was important for us to allocate the memory of the binary image output dynamically so that the memory use of the program would be efficient and that the memory allocation [...]
 2. **Separation of Concern**: We tried to split the program into independent components that will be responsible for well-defined tasks and that the sharing of data between files will be through some [...]
 3. **Abstraction of Data Structures and Variables**: Used to fit our needs by defining different typedef structs, types, enums, and constants.
+&nbsp;
 
-
-
+&nbsp;
 #### 🗂️ My Implementation Overview in Short
 #### Stages
 
@@ -54,9 +49,9 @@ The assembler is designed to handle assembly language files, process macros, and
 
 #### 🔄 Next
 The assembler then handles the next source file, repeating these 5 steps for each source file passed to it until the last one, then it ends the program.
+&nbsp;
 
-
-
+&nbsp;
 ## 🏗️ File Structure
 
 - **compiler.c**: Contains the main function and functions to handle source files.
@@ -73,9 +68,9 @@ The assembler then handles the next source file, repeating these 5 steps for eac
 - **parse.c**: Contains functions for parsing assembly code.
 - **sharedStates.c**: Manages global states and shared information across the assembler.
 - **utils.c**: Provides utility functions to validate and handle different parts of the assembly code.
+&nbsp;
 
-
-
+&nbsp;
 ## ⚙️ Compilation Process
 
 The assembler processes source files in several stages:
@@ -84,34 +79,34 @@ The assembler processes source files in several stages:
 2. **First Pass**: Parses the expanded source file, identifies labels, and calculates memory addresses.
 3. **Second Pass**: Generates machine code and auxiliary files based on the information gathered in the first pass.
 4. **Export Files**: Generates `.ob`, `.ext`, and `.ent` files if no errors are encountered.
+&nbsp;
 
-
-
+&nbsp;
 ## 🔧 Functions and Methods
 
 ### Main Functions
 
 - `handleSourceFiles(argc, argv)`: Processes command-line arguments and handles multiple source files.
 - `handleSingleFile(arg)`: Handles each individual source file, performing all stages of the assembly process.
+&nbsp;
 
-
-
+&nbsp;
 ## ❗ Error Handling
 
 - `yieldError(err)`: Logs errors and writes them to an `errors.log` file.
 - `yieldWarning(err)`: Logs warnings and writes them to a `warnings.log` file.
+&nbsp;
 
-
-
+&nbsp;
 ### File Export
 
 - `exportFilesMainHandler()`: Main handler for exporting `.ob`, `.ent`, and `.ext` files.
 - `generateObFile()`: Generates the `.ob` file containing the machine code.
 - `createEntriesFile()`: Creates the `.ent` file for entry labels.
 - `createExternalsFile()`: Creates the `.ext` file for external labels.
+&nbsp;
 
-
-
+&nbsp;
 ## 🛠️ Usage
 
 To use the assembler, compile the source code and run the executable with the assembly files as arguments:
@@ -122,9 +117,9 @@ gcc -o assembler compiler.c data.h errors.c exportFiles.c firstRun.c secondRun.c
 ```
 
 The assembler will generate the necessary output files in the same directory as the source files.
+&nbsp;
 
-
-
+&nbsp;
 ## 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
