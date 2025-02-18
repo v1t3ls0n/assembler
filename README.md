@@ -48,14 +48,14 @@ The assembler then handles the next source file, repeating these 5 steps for eac
 - **`compiler.c`** – Contains the main function and handles source files.
 - **`errors.c`** – Handles error logging and reporting.
 - **`exportFiles.c`** – Manages the creation of output files like `.ob`, `.ent`, and `.ext`.
-- **`firstRun.c`** – Implements the first pass of the assembler, parsing and analyzing the assembly code.
-- **`secondRun.c`** – Implements the second pass, writing machine code to memory.
+- **`firstRun.c`** – Contains functions specifically used by parse.c for handling the first pass of the assembler.
+- **`secondRun.c`** – Contains functions specifically used by parse.c for handling the second pass of the assembler.
 - **`preProccesor.c`** – Handles macro expansion.
-- **`tables.c`** – Manages symbol and macro tables.
+- **`tables.c`** – Handles the symbol table, macro tables, and other typedef data structures used by the assembler.
 - **`helpers.c`** – Contains utility functions for string manipulation and format conversions.
 - **`memory.c`** – Manages memory allocation and image generation.
 - **`operations.c`** – Manages operation definitions and their properties.
-- **`parse.c`** – Contains functions for parsing assembly code.
+- **`parse.c`** – Implements both the first and second pass of the assembler, determining the parsing stage based on state.
 - **`sharedStates.c`** – Manages global states and shared information across the assembler.
 - **`utils.c`** – Provides additional utility functions for validation and general handling.
 
