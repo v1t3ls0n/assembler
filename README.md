@@ -1,8 +1,9 @@
-# Assembler – System Programming Lab Final Project
-**Course Instructor**: Danny Calfon  
-**OpenU Course Link**: [20465 – System Programming Lab](https://www.openu.ac.il/courses/20465.htm)  
-**Task Definition & Specification**: [docs/spec.pdf](docs/spec.pdf)
-📅 **Submission Date**: 28.03.2022  
+# ⚙️ Assembler – System Programming Lab Final Project
+
+**🌐 OpenU Course Link**: [20465 – System Programming Lab](https://www.openu.ac.il/courses/20465.htm)  
+**📑 Task Definition & Specification**: [docs/spec.pdf](docs/spec.pdf)  
+**👨‍🏫 Course Instructor**: Danny Calfon  
+**📅 Submission Date**: 28.03.2022  
 
 #### 📝 Task Summary
 Implement an assembler as outlined in docs/spec.pdf. This repository provides a complete assembler for a custom assembly language specified by the Open University's System Programming Lab CS course. 
