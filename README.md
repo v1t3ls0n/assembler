@@ -1,4 +1,4 @@
-# ⚙️ **Assembler – System Programming Lab Final Project**  
+# ⚙️ **Assembler Project**  
 
 **🌐 Course:** [20465 – System Programming Lab](https://www.openu.ac.il/courses/20465.htm)  
 **👨‍🏫 Instructor:** Danny Calfon  
