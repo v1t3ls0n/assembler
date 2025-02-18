@@ -21,6 +21,8 @@ It incorporates rigorous error handling at every stage—macro expansion, first 
 - [🤝 Contributing](#contributing)
 - [📜 License](#license)
 
+
+
 ## 🌟 Overview
 
 The assembler is designed to handle assembly language files, process macros, and generate machine code. It supports multiple stages including macro expansion, first pass, and second pass to ensure the generation of accurate machine code and auxiliary files like `.ob`, `.ent`, and `.ext`.
