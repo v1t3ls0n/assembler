@@ -21,16 +21,6 @@ It incorporates rigorous error handling at every stage—macro expansion, first 
 - [🤝 Contributing](#-contributing)
 - [📜 License](#-license)
 
-## 🌟 Overview
-## 🏗️ File Structure
-## ⚙️ Compilation Process
-## 🔧 Functions and Methods
-## ❗ Error Handling
-## 🛠️ Usage
-## 🤝 Contributing
-## 📜 License
-
-
 
 ## 🌟 Overview
 
