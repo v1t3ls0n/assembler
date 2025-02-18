@@ -12,13 +12,14 @@ It incorporates rigorous error handling at every stage—macro expansion, first 
 
 ## 📋 Table of Contents
 
-- [🌟 Overview](#🌟-overview)
-- [🏗️ File Structure](#🏗️-file-structure)
-- [⚙️ Compilation Process](#⚙️-compilation-process)
-- [🔧 Functions and Methods](#🔧-functions-and-methods)
-- [❗ Error Handling](#❗-error-handling)
-- [🛠️ Usage](#🛠️-usage)
-- [📜 License](#📜-license)
+- [🌟 Overview](#overview)
+- [🏗️ File Structure](#%EF%B8%8F-file-structure)
+- [⚙️ Compilation Process](#%EF%B8%8F-compilation-process)
+- [🔧 Functions and Methods](#-functions-and-methods)
+- [❗ Error Handling](#-error-handling)
+- [🛠️ Usage](#%EF%B8%8F-usage)
+- [📜 License](#-license)
+
 
 
 ## 🌟 Overview
