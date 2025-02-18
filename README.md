@@ -35,25 +35,83 @@ The assembler is designed to handle assembly language files, process macros, and
 The assembler then handles the next source file, repeating these 5 steps for each source file passed to it until the last one, then it ends the program.
 
 <br><br><br>
-## 🏗️ File Structure
 
-- **compiler.c**: Contains the main function and functions to handle source files.
-- **data.h**: Includes necessary headers and definitions.
-- **errors.c**: Handles error logging and reporting.
-- **exportFiles.c**: Manages the creation of output files like `.ob`, `.ent`, and `.ext`.
-- **firstRun.c**: Implements the first pass of the assembler, parsing and analyzing the assembly code.
-- **secondRun.c**: Implements the second pass, writing machine code to memory.
-- **preProccesor.c**: Handles macro expansion.
-- **tables.c**: Manages symbol and macro tables.
-- **helpers.c**: Contains utility functions for string manipulation and conversion between different formats.
-- **memory.c**: Manages memory allocation and image generation.
-- **operations.c**: Manages operation definitions and their properties.
-- **parse.c**: Contains functions for parsing assembly code.
-- **sharedStates.c**: Manages global states and shared information across the assembler.
-- **utils.c**: Provides utility functions to validate and handle different parts of the assembly code.
+## 🏗️ **File Structure**
 
+### **📄 Main Source Files (`.c`)**
+- **`compiler.c`** – Contains the main function and handles source files.
+- **`errors.c`** – Handles error logging and reporting.
+- **`exportFiles.c`** – Manages the creation of output files like `.ob`, `.ent`, and `.ext`.
+- **`firstRun.c`** – Implements the first pass of the assembler, parsing and analyzing the assembly code.
+- **`secondRun.c`** – Implements the second pass, writing machine code to memory.
+- **`preProccesor.c`** – Handles macro expansion.
+- **`tables.c`** – Manages symbol and macro tables.
+- **`helpers.c`** – Contains utility functions for string manipulation and format conversions.
+- **`memory.c`** – Manages memory allocation and image generation.
+- **`operations.c`** – Manages operation definitions and their properties.
+- **`parse.c`** – Contains functions for parsing assembly code.
+- **`sharedStates.c`** – Manages global states and shared information across the assembler.
+- **`utils.c`** – Provides additional utility functions for validation and general handling.
 
-<br><br><br>
+---
+
+### **📂 Header Files (`headers/`)**
+- **`headers/functions/`**
+  - `compiler.h` – Header for main compiler functions.
+  - `errors.h` – Defines error handling methods.
+  - `exportFiles.h` – Contains function prototypes for file generation.
+  - `firstRun.h` – Function definitions for the first assembler pass.
+  - `functions.h` – General helper function declarations.
+  - `helpers.h` – Utility functions for formatting and string operations.
+  - `memory.h` – Handles memory allocation and management.
+  - `operation.h` – Defines supported assembler operations.
+  - `parse.h` – Function definitions for parsing assembler code.
+  - `preProccesor.h` – Macro expansion function declarations.
+  - `secondRun.h` – Function definitions for the second assembler pass.
+  - `sharedStates.h` – Manages shared state variables.
+  - `tables.h` – Defines structures for symbol and macro tables.
+  - `utils.h` – Additional helper functions.
+
+---
+
+### **📜 Documentation (`docs/`)**
+- **`spec.pdf`** – The project specification file detailing requirements and design.
+
+---
+
+### **📚 Library Files (`lib/`)**
+- **`lib.h`** – Shared library definitions.
+
+---
+
+### **🔢 Variables (`variables/`)**
+- **`complex_typedef.h`** – Complex typedef structures.
+- **`constants.h`** – Defines global constants used throughout the assembler.
+- **`flags.h`** – Manages assembler flags and settings.
+- **`variables.h`** – Stores global variable definitions.
+
+---
+
+### **🛠️ Scripts**
+- **`runTests.sh`** – Runs test cases for the assembler.
+
+---
+
+### **📁 Project Metadata**
+- **`.gitignore`** – Specifies files to ignore in version control.
+- **`LICENSE.md`** – Contains the project license.
+- **`README.md`** – This documentation file.
+- **`makefile`** – Defines build commands for compiling the assembler.
+
+---
+
+### **🧪 Test Files (`__test_files/`)**
+- **`errors/`** – Contains test cases with intentional errors.
+- **`mixed/`** – Test cases with a combination of valid and invalid instructions.
+- **`valid/`** – Fully valid assembler test cases.
+- **`errors.log`** – Stores error logs from test runs.
+
+<br><br><br><br>
 ## 🛠️ Usage
 
 To use the assembler, compile the source code and run the executable with the assembly files as arguments:
