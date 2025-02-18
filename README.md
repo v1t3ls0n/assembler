@@ -18,7 +18,6 @@ It incorporates rigorous error handling at every stage—macro expansion, first 
 - [🔧 Functions and Methods](#-functions-and-methods)
 - [❗ Error Handling](#-error-handling)
 - [🛠️ Usage](#-usage)
-- [🤝 Contributing](#-contributing)
 - [📜 License](#-license)
 
 
@@ -78,7 +77,7 @@ The assembler processes source files in several stages:
 - `handleSourceFiles(argc, argv)`: Processes command-line arguments and handles multiple source files.
 - `handleSingleFile(arg)`: Handles each individual source file, performing all stages of the assembly process.
 
-### Error Handling
+## ❗ Error Handling
 
 - `yieldError(err)`: Logs errors and writes them to an `errors.log` file.
 - `yieldWarning(err)`: Logs warnings and writes them to a `warnings.log` file.
