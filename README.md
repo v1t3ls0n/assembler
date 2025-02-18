@@ -64,8 +64,6 @@ gcc -o assembler compiler.c data.h errors.c exportFiles.c firstRun.c secondRun.c
 ```
 
 The assembler will generate the necessary output files in the same directory as the source files.
-<br><br><br>
+<br><br><br><br>
 ## 📜 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
