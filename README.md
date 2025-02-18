@@ -13,7 +13,7 @@ It incorporates rigorous error handling at every stage—macro expansion, first 
 ## 📋 Table of Contents
 
 - [🌟 Overview](#overview)
-- [🏗️ File Structure](#file-structure)
+- [🏗️ File Structure](#🏗️-file-structure)
 - [⚙️ Compilation Process](#compilation-process)
 - [🔧 Functions and Methods](#functions-and-methods)
 - [❗ Error Handling](#error-handling)
