@@ -9,14 +9,19 @@
 Implement an assembler as outlined in docs/spec.pdf. This repository provides a complete assembler for a custom assembly language specified by the Open University's System Programming Lab CS course. 
 The assembler reads assembly source files (.as), expands macros, handles symbol definitions, generates machine code, and produces auxiliary files essential for proper execution. 
 It incorporates rigorous error handling at every stage—macro expansion, first pass, and second pass—to detect and log issues without terminating early, ensuring all errors are discovered.
-<br><br><br>
+
+<br>
+
 ## 📋 Table of Contents
 
 - [🌟 Overview](#overview)
 - [🏗️ File Structure](#%EF%B8%8F-file-structure)
 - [🛠️ Usage](#%EF%B8%8F-usage)
 - [📜 License](#-license)
-<br><br><br>
+
+<br>
+<br>
+
 ## 🌟 Overview
 The assembler is designed to handle assembly language files, process macros, and generate machine code. It supports multiple stages including macro expansion, first pass, and second pass to ensure the[...]
 #### 📋 Implementation Overview and General Approach
@@ -34,7 +39,8 @@ The assembler is designed to handle assembly language files, process macros, and
 #### 🔄 Next
 The assembler then handles the next source file, repeating these 5 steps for each source file passed to it until the last one, then it ends the program.
 
-<br><br><br>
+<br>
+<br>
 
 ## 🏗️ **File Structure**
 
@@ -111,7 +117,9 @@ The assembler then handles the next source file, repeating these 5 steps for eac
 - **`valid/`** – Fully valid assembler test cases.
 - **`errors.log`** – Stores error logs from test runs.
 
-<br><br><br><br>
+<br>
+<br>
+
 ## 🛠️ Usage
 
 To use the assembler, compile the source code and run the executable with the assembly files as arguments:
@@ -122,6 +130,8 @@ gcc -o assembler compiler.c data.h errors.c exportFiles.c firstRun.c secondRun.c
 ```
 
 The assembler will generate the necessary output files in the same directory as the source files.
-<br><br><br><br>
+
+<br>
+
 ## 📜 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
