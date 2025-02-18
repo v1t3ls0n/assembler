@@ -23,22 +23,21 @@ Designed for **efficiency and reliability**, the assembler ensures **comprehensi
 
 ## 📋 **Table of Contents**
 - [🎯 Project Overview](#-project-overview)
-- [⚙️ Implementation Details](#-implementation-details)
-  - [📋 Design and Approach](#-design-and-approach)
-  - [🛠️ Processing Pipeline](#-processing-pipeline)
-  - [🔄 File Processing Flow](#-file-processing-flow)
-- [🏗️ File Structure](#-file-structure)
+- [🛠 Implementation Details](#-implementation-details)
+  - [📌 Design and Approach](#-design-and-approach)
+  - [📦 Processing Pipeline](#-processing-pipeline)
+  - [🔁 File Processing Flow](#-file-processing-flow)
+- [🏗 File Structure](#-file-structure)
   - [📄 Main Source Files (`.c`)](#-main-source-files-c)
   - [📂 Header Files (`headers/`)](#-header-files-headers)
-  - [📜 Documentation (`docs/`)](#-documentation-docs)
-  - [📚 Library Files (`lib/`)](#-library-files-lib)
-  - [🔢 Variables (`variables/`)](#-variables-variables)
-  - [🛠️ Scripts](#-scripts)
-  - [📁 Project Metadata](#-project-metadata)
+  - [📖 Documentation (`docs/`)](#-documentation-docs)
+  - [📦 Library Files (`lib/`)](#-library-files-lib)
+  - [🔣 Variables (`variables/`)](#-variables-variables)
+  - [📂 Project Metadata](#-project-metadata)
   - [🧪 Test Files (`__test_files/`)](#-test-files-__test_files)
-- [🛠️ Usage](#-usage)
-- [📜 License](#-license))
-
+  - [📜 Scripts](#-scripts)
+- [🚀 Usage](#-usage)
+- [📄 License](#-license)
 
 ---
 
