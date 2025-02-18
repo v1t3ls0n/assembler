@@ -17,26 +17,30 @@ This repository contains an assembler implementation for a hypothetical assembly
 
 The assembler is designed to handle assembly language files, process macros, and generate machine code. It supports multiple stages including macro expansion, first pass, and second pass to ensure the generation of accurate machine code and auxiliary files like `.ob`, `.ent`, and `.ext`.
 
+
 ### 📅 Date: 28.03.2022
 
-### 📝 Task Summary
+#### 📝 Task Summary
 Create an assembler as required in docs/spec.pdf
 
-### 🎯 Objectives (Goals)
-1. **Memory Efficiency**: Allocate memory dynamically to ensure efficient use of resources.
-2. **Separation of Concern**: Split the program into independent components responsible for well-defined tasks, with shared states for data sharing between files.
-3. **Abstraction of Data Structures**: Use typedef structs, enums, and constants to fit our needs.
+#### 📋 Implementation Overview and General Approach
 
-### 🗂️ My Implementation Overview in Short
+#### 🎯 Objectives (Goals)
+1. **Memory Efficiency**: It was important for us to allocate the memory of the binary image output dynamically so that the memory use of the program would be efficient and that the memory allocation of the program would be minimized.
+2. **Separation of Concern**: We tried to split the program into independent components that will be responsible for well-defined tasks and that the sharing of data between files will be through some kind of shared states interface that will be used by all files.
+3. **Abstraction of Data Structures and Variables**: Used to fit our needs by defining different typedef structs, types, enums, and constants.
+
+#### 🗂️ My Implementation Overview in Short
 #### Stages
 
-1. **Macros Stage**: The assembler parses the original source (.as) file and generates the expanded (.am) source file, replacing macros with their content.
-2. **First Run**: Counts the size of the data and instruction images, adds symbols to the symbol table, and verifies the syntax and semantics.
-3. **In Between the First and Second Run**: Updates addresses of data symbols and allocates the required memory.
-4. **Second Run**: Writes the binary code to memory and continues checking for errors.
-5. **Export (Generate Files)**: Generates the required output files (.ob, .ext, .ent) if no errors are found.
+1. **Macros Stage**: The assembler parses the original source (.as) file and generates the expanded (.am) source file that contains the same source code content, the only difference is that the macros defined in the original source are being replaced in the expanded version with their content.
+2. **First Run**: In the first run, the assembler counts the size of the data image and the instruction image (without allocating any memory), adds all the symbols to the symbol table, and verifies the syntax and semantic of the code.
+3. **In Between the First and Second Run**: If the first run ended successfully, the assembler updates the address of each data symbol in the symbol table, then allocates the exact amount of memory needed to write the final binary image.
+4. **Second Run**: In the second run, the assembler writes the words of each line of code in binary format, inserts the words (binary bits) to the memory image in the correct position depending on the type of word (data/instruction). If the assembler encounters a label operand not within the symbol table and not external, it yields an error message and continues to check the rest of the code to discover all errors of this type.
+5. **Export (Generate Files)**: If the second run finishes without any error, the required outputs (.ob, .ext, .ent files) are generated.
 
-The assembler repeats these steps for each source file provided.
+#### 🔄 Next
+The assembler then handles the next source file, repeating these 5 steps for each source file passed to it until the last one, then it ends the program.
 
 ## 🏗️ File Structure
 
@@ -104,26 +108,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-### 📅 Date: 28.03.2022
-
-#### 📝 Task Summary
-Create an assembler as required in docs/spec.pdf
-
-#### 📋 Implementation Overview and General Approach
-
-#### 🎯 Objectives (Goals)
-1. **Memory Efficiency**: It was important for us to allocate the memory of the binary image output dynamically so that the memory use of the program would be efficient and that the memory allocation of the program would be minimized.
-2. **Separation of Concern**: We tried to split the program into independent components that will be responsible for well-defined tasks and that the sharing of data between files will be through some kind of shared states interface that will be used by all files.
-3. **Abstraction of Data Structures and Variables**: Used to fit our needs by defining different typedef structs, types, enums, and constants.
-
-#### 🗂️ My Implementation Overview in Short
-#### Stages
-
-1. **Macros Stage**: The assembler parses the original source (.as) file and generates the expanded (.am) source file that contains the same source code content, the only difference is that the macros defined in the original source are being replaced in the expanded version with their content.
-2. **First Run**: In the first run, the assembler counts the size of the data image and the instruction image (without allocating any memory), adds all the symbols to the symbol table, and verifies the syntax and semantic of the code.
-3. **In Between the First and Second Run**: If the first run ended successfully, the assembler updates the address of each data symbol in the symbol table, then allocates the exact amount of memory needed to write the final binary image.
-4. **Second Run**: In the second run, the assembler writes the words of each line of code in binary format, inserts the words (binary bits) to the memory image in the correct position depending on the type of word (data/instruction). If the assembler encounters a label operand not within the symbol table and not external, it yields an error message and continues to check the rest of the code to discover all errors of this type.
-5. **Export (Generate Files)**: If the second run finishes without any error, the required outputs (.ob, .ext, .ent files) are generated.
-
-#### 🔄 Next
-The assembler then handles the next source file, repeating these 5 steps for each source file passed to it until the last one, then it ends the program.
