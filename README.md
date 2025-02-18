@@ -35,7 +35,7 @@ Designed for **efficiency and reliability**, the assembler ensures **comprehensi
   - [🔢 Variables (`variables/`)](#-variables-variables)
   - [📁 Project Metadata](#-project-metadata)
   - [🧪 Test Files (`__test_files/`)](#-test-files-__test_files)
-  - [🗒️ Scripts](#️-scripts)
+  - [🗒️ Scripts](#%EF%B8%8F-scripts)
 - [🚀 Usage](#-usage)
 - [⚖️ License](#️-license)
 
@@ -87,33 +87,72 @@ After these five stages, the assembler moves to the next file until all inputs a
 
 ## 🏗️ **File Structure**
 
-### 📄 **Main Source Files (`.c`)**
-- **`compiler.c`** – Handles main execution flow.  
-- **`errors.c`** – Manages error logging and reporting.  
-- **`exportFiles.c`** – Generates `.ob`, `.ent`, and `.ext` files.  
-- **`parse.c`** – Implements both the first and second pass, controlling parsing state.  
-- **`firstRun.c`** – Helper functions for the first pass, called by `parse.c`.  
-- **`secondRun.c`** – Helper functions for the second pass, called by `parse.c`.  
-- **`preProccesor.c`** – Handles macro expansion.  
-- **`tables.c`** – Manages symbol tables, macro tables, and typedef data structures.  
-- **`helpers.c`** – String manipulation utilities.  
-- **`memory.c`** – Handles memory allocation.  
-- **`operations.c`** – Defines assembler operations.  
-- **`sharedStates.c`** – Manages global assembler states.  
-- **`utils.c`** – Validation and additional helper functions.
+### **📄 Main Source Files (`.c`)**
+
+- **`compiler.c`**  
+  - **Role**: Contains the main function, reads user-supplied source files, and calls `handleSingleFile()` to run the entire assembler process for each file.
+
+- **`errors.c`**  
+  - **Role**: Handles error logging (to `stderr` and `errors.log`) at every assembly stage. Provides functions like `yieldError()` and `yieldWarning()`.
+
+- **`exportFiles.c`**  
+  - **Role**: Generates the **output files** (`.ob`, `.ent`, `.ext`) once the second pass completes successfully.
+
+- **`parse.c`**  
+  - **Role**: **Central parsing logic** for both the first and second pass, calling functions in `firstRun.c` and `secondRun.c` based on global state.
+
+- **`firstRun.c`**  
+  - **Role**: Implements the **first pass** routines—verifying syntax/semantic rules, updating counters (`IC`, `DC`), and detecting errors.
+
+- **`secondRun.c`**  
+  - **Role**: Implements the **second pass**, writing machine code to memory, resolving labels, and managing external references.
+
+- **`preProccesor.c`**  
+  - **Role**: Handles **macro expansion** (parsing `.as` files and creating `.am` files). If macro syntax errors occur, logs them and stops further assembly.
+
+- **`tables.c`**  
+  - **Role**: Manages all **tables**—symbol table, macro table, and external operands. Uses a **hash table** approach for lookups/installs.
+
+- **`helpers.c`**  
+  - **Role**: Utility functions for string manipulation, trimming, cloning, and numeric conversions (e.g., binary to hex).
+
+- **`memory.c`**  
+  - **Role**: Manages **memory counters** (`IC`, `DC`) and constructs the **memory image** (instruction/data). Allocates the exact space after the first pass.
+
+- **`operations.c`**  
+  - **Role**: Stores **operation definitions** (opcodes, `funct`, addressing modes) and provides lookup methods like `getOperationByName()`.
+
+- **`sharedStates.c`**  
+  - **Role**: Maintains **global assembler state**—which pass is active, current file name, line number, etc. Provides getters/setters to ensure controlled access.
+
+- **`utils.c`**  
+  - **Role**: General **validation** helpers—detecting instructions, macros, registers, label names, etc. Used heavily by `parse.c`.
 
 ---
 
-### 📂 **Header Files (`headers/`)**
-Inside **`headers/functions/`**:
-- `compiler.h` – Main compiler functions.  
-- `errors.h` – Error handling.  
-- `exportFiles.h` – File generation functions.  
-- `firstRun.h` – Functions for the first assembler pass.  
-- `secondRun.h` – Functions for the second assembler pass.  
-- `parse.h` – Parsing function declarations.  
-- `tables.h` – Symbol table and macro structure definitions.  
-- `utils.h` – Additional helper functions.
+### **📂 Header Files (`headers/`)**
+
+- **`data.h`**  
+  - A **“master aggregator”** header that includes:
+    - **`./headers/lib/lib.h`** – Standard library includes (`<stdio.h>`, `<stdlib.h>`, etc.).
+    - **`./headers/variables/variables.h`** – Core typedefs, enums, flags, and states.
+    - **`./headers/functions/functions.h`** – Consolidates major function prototypes (`compiler.h`, `errors.h`, `exportFiles.h`, etc.).
+  - **Purpose**: Ensures a **single include** can pull in all essential definitions for the assembler.
+
+- **`headers/functions/*.h`**  
+  - **`compiler.h`** – Main compiler workflow declarations (`handleSingleFile`, `handleSourceFiles`).  
+  - **`errors.h`** – Error/warning handling prototypes.  
+  - **`exportFiles.h`** – Output file generation functions.  
+  - **`firstRun.h`** – First pass functions.  
+  - **`secondRun.h`** – Second pass functions.  
+  - **`preProccesor.h`** – Macro expansion functions.  
+  - **`tables.h`** – Symbol/macro table structures and management.  
+  - **`helpers.h`** – String/numeric utility functions.  
+  - **`memory.h`** – Memory counters, `.ob` file writing, data/instruction images.  
+  - **`operation.h`** – Operation table (opcodes, `funct`, addressing modes).  
+  - **`parse.h`** – Core parsing routines bridging the passes.  
+  - **`sharedStates.h`** – Global state (file name, line number, pass).  
+  - **`utils.h`** – Validation (label names, instructions, registers, etc.).
 
 ---
 
@@ -123,22 +162,23 @@ Inside **`headers/functions/`**:
 ---
 
 ### 📚 **Library Files (`lib/`)**
-- **`lib.h`** – Shared library definitions.
+- **`lib.h`** – Shared library definitions (standard includes, macros, etc.).
 
 ---
 
 ### 🔢 **Variables (`variables/`)**
-- **`constants.h`** – Global constants.  
-- **`flags.h`** – Assembler flags and settings.  
-- **`variables.h`** – Stores global variables.
+- **`complex_typedef.h`** – Key structs (e.g., `BinaryWord`, `HexWord`, `Operation`, `Item`) for memory images, operations, and tables.  
+- **`constants.h`** – Defines constants (`BINARY_WORD_SIZE`, `MEMORY_START`, register codes, etc.).  
+- **`flags.h`** – Enums for errors, warnings, assembler states, and booleans.  
+- **`variables.h`** – Aggregates these enums/structs into one header.
 
 ---
 
 ### 📁 **Project Metadata**
-- **`.gitignore`** – Files to ignore in version control.  
+- **`.gitignore`** – Lists files/folders to ignore in version control.  
 - **`LICENSE.md`** – MIT License details.  
 - **`README.md`** – This documentation.  
-- **`makefile`** – Compilation instructions.
+- **`makefile`** – Build instructions.
 
 ---
 
@@ -146,7 +186,7 @@ Inside **`headers/functions/`**:
 - **`errors/`** – Intentional error cases.  
 - **`mixed/`** – Mix of valid/invalid cases.  
 - **`valid/`** – Fully valid assembler tests.  
-- **`errors.log`** – Stores error logs.
+- **`errors.log`** – Stores error logs generated during tests.
 
 ---
 
@@ -163,7 +203,7 @@ gcc -o assembler compiler.c data.h errors.c exportFiles.c firstRun.c secondRun.c
 ./assembler file1.as file2.as ...
 ```
 
-The necessary output files are generated in the same directory as the source files.
+The assembler will generate the necessary output files in the same directory as the source files.
 
 ---
 
@@ -171,3 +211,4 @@ The necessary output files are generated in the same directory as the source fil
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
 ---
+****
